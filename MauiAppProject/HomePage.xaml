@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppProject.HomePage"
+             Title="HomePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="Отменить" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.MenuBarItems>
+
+        <MenuBarItem Text="Действие">
+
+            <MenuFlyoutItem Text="Отменить" Command="{Binding UndoCommand}"/>
+            
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Создать" Command="{Binding NewCommand}"/>
+            <MenuFlyoutItem Text="Редактировать" Command="{Binding EditCommand}"/>
+            <MenuFlyoutItem Text="Сохранить" Command="{Binding SaveCommand}"/>
+            <MenuFlyoutItem Text="Найти" />
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Удалить" Command="{Binding DeleteCommand}"/>
+        </MenuBarItem>
+            
+    </ContentPage.MenuBarItems>
+
+
+    <VerticalStackLayout>
+        <CollectionView x:Name="collectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="Black">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Entry Text="{Binding Name}" Grid.Column="0"/>
+                            <Entry Text="{Binding Surname}" Grid.Column="1"/>
+                            <Entry Text="{Binding CompanyNavigation.Name}" Grid.Column="2"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label HeightRequest="50"/>
+
+        <Border Stroke="Black" StrokeThickness="1">
+            <VerticalStackLayout>
+                <Label Text="Поиск" FontSize="Medium" HorizontalOptions="Center"/>
+
+                <SearchBar x:Name="Surname" Placeholder="Фамилия"/>
+
+                <SearchBar x:Name="Company" Placeholder="Компания"/>
+
+                <Button Text="Поиск" x:Name="SearchButton" Clicked="SearchButton_Clicked"/>
+
+            </VerticalStackLayout>
+        </Border>
+
+    </VerticalStackLayout>
+</ContentPage>
